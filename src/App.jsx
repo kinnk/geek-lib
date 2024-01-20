@@ -6,12 +6,12 @@ import Home from './pages/home'
 function App() {
 
   return (
-    <Wrapper>
-      <Header/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-      </Routes>
-    </Wrapper>
+    <>        
+      <Header/> 
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+        </Routes>
+    </>
   )
 }
 
