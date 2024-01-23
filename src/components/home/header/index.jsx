@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import HeaderTitle from "../header-title";
 import { useGetTopAnimeQuery } from "../../../redux/api/jikan.api";
+import LoadingComponent from "../../loading";
 
 export default function HomeHeader() {
-  const {data, isLoading} = useGetTopAnimeQuery();
+  const {data, isLoading} = useGetTopAnimeQuery({rating:''});
   const [currentHeader, setCurrentHeader] = useState(0);
-  console.log(!isLoading && data)
+  
   useEffect(()=>{
     const interval = setInterval(()=>{
       if(currentHeader < 4){
@@ -18,7 +19,7 @@ export default function HomeHeader() {
   return (
     <>
       {
-        !isLoading && <HeaderTitle data= {data[currentHeader]}/>
+        isLoading ? <LoadingComponent/> : <HeaderTitle data= {data[currentHeader]}/>
       }
     </>
   )

@@ -5,11 +5,31 @@ export const jikanApi = createApi({
   baseQuery: fetchBaseQuery({baseUrl: 'https://api.jikan.moe/v4/'}),
   endpoints: (build) => ({
     getTopAnime: build.query({
-      query: (limit = 5) => `top/anime?limit=${limit}&filter=airing`,
-      transformResponse: response =>  response.data
+      // type (string) tv | movie | ova | special | ona | music | cm | pv | tv-special
+      // filter (string) airing | upcoming | bypopularity | favorite
+      // rating (string) g (all) | pg (children)| pg13 (13+) | r17 (17+) | r (low nudity) | rx (hanime)
+      // limit (number) count of item
+      query: ({
+        type = '', 
+        filter = '',
+        rating = '',
+        limit = 5, 
+      }) => `top/anime?${type}&filter=${filter}&rating=${rating}&limit=${limit}`,
+      transformResponse: (response) =>  response.data.sort((a,b) =>  a.rank - b.rank)
     }),
+    getTopManga: build.query({
+      // type (string) manga | novel | lightnovel | oneshot | doujin | manhwa | manhua | one-shot 
+      // filter (string) publishing | upcoming | bypopularity | favorite
+      // limit (number) count of item
+      query: ({
+        type = '',
+        filter = '',
+        limit = 5
+      }) => `top/manga?type=${type}&filter=${filter}&limit=${limit}`,
+      transformResponse: response => response.data.sort((a,b) =>  a.rank - b.rank)
+    })
   })
 })
 
 
-export const { useGetTopAnimeQuery } = jikanApi
+export const { useGetTopAnimeQuery, useGetTopMangaQuery} = jikanApi
