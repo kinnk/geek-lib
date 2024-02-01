@@ -4,6 +4,14 @@ export const jikanApi = createApi({
   reducerPath: 'jikanApi',
   baseQuery: fetchBaseQuery({baseUrl: 'https://api.jikan.moe/v4/'}),
   endpoints: (build) => ({
+    getAnimeGenres: build.query({
+      query: () => `genres/anime`,
+      transformResponse: response => response.data.sort((a,b)=> {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
+        return 0
+      })
+    }),
     getTopAnime: build.query({
       // type (string) tv | movie | ova | special | ona | music | cm | pv | tv-special
       // filter (string) airing | upcoming | bypopularity | favorite
@@ -32,4 +40,4 @@ export const jikanApi = createApi({
 })
 
 
-export const { useGetTopAnimeQuery, useGetTopMangaQuery} = jikanApi
+export const { useGetAnimeGenresQuery, useGetTopAnimeQuery, useGetTopMangaQuery} = jikanApi

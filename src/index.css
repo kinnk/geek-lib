@@ -18,6 +18,7 @@ body{
   box-sizing: border-box;
   min-height: 100vh;
   min-width: 100vw;
+  overflow-x: hidden;
 }
 
 @layer base{
@@ -25,7 +26,7 @@ body{
     @apply duration-500 bg-white dark:bg-slate-800;
   }
   ::-webkit-scrollbar {
-    @apply top-0 w-2 h-2;
+    @apply top-0 w-2 h-1;
   }
   
   ::-webkit-scrollbar-track{

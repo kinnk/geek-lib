@@ -7,9 +7,9 @@ import LoadingComponent from "../../components/loading";
 export default function Home() {
   const {data : topAnimeData, isLoading : topAnimeIsLoading} = useGetTopAnimeQuery({type:'tv',filter: 'airing', limit: 10})
   const {data : topMangaData, isLoading : topMangaIsLoading} = useGetTopMangaQuery({filter: 'publishing', limit: 10})
-  console.log(topAnimeData)
+  
   return (
-  <>
+    <>
     <header>
       <HomeHeader/>
     </header>
@@ -17,13 +17,13 @@ export default function Home() {
       <HomeSection title={'Top anime ongoing'}>
         {
           topAnimeIsLoading ? <LoadingComponent/> :
-          topAnimeData.map((item) => <ItemCard key={item.mal_id} item={item}/>)
+          topAnimeData?.map((item) => <ItemCard key={item.mal_id} item={item}/>)
         }
       </HomeSection>
       <HomeSection title={'Top manga ongoing'}>
         {
           topMangaIsLoading ? <LoadingComponent/> : 
-          topMangaData.map((item) => <ItemCard key={item.mal_id} item={item}/>)
+          topMangaData?.map((item) => <ItemCard key={item.mal_id} item={item}/>)
         }
       </HomeSection>
     </main>

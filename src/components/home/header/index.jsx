@@ -19,7 +19,7 @@ export default function HomeHeader() {
   return (
     <>
       {
-        isLoading ? <LoadingComponent/> : <HeaderTitle data= {data[currentHeader]}/>
+        isLoading ? <LoadingComponent h={95}/> : <HeaderTitle data= {data[currentHeader]}/>
       }
     </>
   )
