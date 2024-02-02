@@ -13,19 +13,21 @@ export default function Home() {
     <header>
       <HomeHeader/>
     </header>
-    <main className="px-4 xl:px-10 py-4 ">
-      <HomeSection title={'Top anime ongoing'}>
-        {
-          topAnimeIsLoading ? <LoadingComponent/> :
-          topAnimeData?.map((item) => <ItemCard key={item.mal_id} item={item}/>)
-        }
-      </HomeSection>
-      <HomeSection title={'Top manga ongoing'}>
-        {
-          topMangaIsLoading ? <LoadingComponent/> : 
-          topMangaData?.map((item) => <ItemCard key={item.mal_id} item={item}/>)
-        }
-      </HomeSection>
+    <main className="">
+      <div className="container mx-auto p-2">
+        <HomeSection title={'Top anime ongoing'}>
+          {
+            topAnimeIsLoading ? <LoadingComponent/> :
+            topAnimeData?.map((item) => <ItemCard key={item.mal_id} item={item}/>)
+          }
+        </HomeSection>
+        <HomeSection title={'Top manga ongoing'}>
+          {
+            topMangaIsLoading ? <LoadingComponent/> : 
+            topMangaData?.map((item) => <ItemCard key={item.mal_id} item={item}/>)
+          }
+        </HomeSection>
+      </div>
     </main>
   </>
 )

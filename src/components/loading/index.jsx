@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 
 export default function LoadingComponent({
   h = 50 
@@ -11,4 +12,8 @@ export default function LoadingComponent({
     </div>
   </div>
   )
+}
+
+LoadingComponent.propTypes = {
+  h: PropTypes.numbers  
 }
